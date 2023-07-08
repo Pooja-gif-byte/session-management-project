@@ -1,0 +1,116 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+}
+body{
+    font-family: "helvetica";
+}
+
+nav {
+    margin-left: 90px;
+    margin-top: 40px;
+    width: 85%;
+    border-radius: 5px;
+    height: 65px;
+    Line-height:75px;
+    padding: 10px 1px;
+    position: fixed;
+    background-image:linear-gradient(cornflowerblue,cornflowerblue);
+}
+nav ul{
+float:right;
+}
+nav li{
+    display:inline;
+    list-style-type:none;
+}
+nav li a{
+    font-size: 20px;
+    padding:5px 15px;
+    color:white;
+    text-decoration: none;
+}
+nav li a:hover{
+    background-color: white;
+    color:black;
+    border-radius: 5px;
+    text-decoration:none;
+    transition: all 0.4s ease 0s;
+}
+
+div.form{
+    width:0%;
+    background:white;
+    padding:30px 50px 0 500px;
+    margin: 0px;
+    text-align:left;
+}
+
+input{
+    border-radius:10px;
+    font-weight:lighter;
+    padding: 4px;
+    margin:5px;
+    width:7cm;
+    border:1px solid black;
+    outline-offset: none;
+    }
+    
+    label{
+        width:140px;
+        display:inline-block;
+        margin: 0cm;
+        font-size: 16px;
+        font-weight:bold;
+    
+    }
+  
+    input#change{
+        margin: 13px 0 0 70px;
+        padding: 4px;
+        background-color:rgb(21, 88, 212);
+        color: white;
+        font-weight:18px;
+        border-radius: 5px;
+        outline:none;
+        font-size: 18px;
+        cursor:pointer;
+        width: 160px;   
+    }
+  
+    input#change:hover{
+        background-color:cornflowerblue;
+        color:black;
+        border-radius: 5px;
+        text-decoration:none;
+        transition: all 0.4s ease 0s;  
+    }
+div.main{
+    margin-left:1080px;
+    margin-top:-335px;
+    position: fixed;
+    text-decoration: none;
+    outline-offset: none;
+}
+.footer{
+        margin-left: 90px;
+        margin-bottom:10px;
+        width: 85%;
+        border-radius: 5px;
+        height: 65px;
+        position: fixed;
+        background-image:linear-gradient(rgb(40, 99, 208),rgb(25, 90, 212));
+    }
+    .footer .row h3{
+
+        color: white;
+        font-size: 20px;
+    font-weight:lighter;
+        margin-left: 40px;
+        padding-top: 20px;
+        text-align: center;
+    
+    }
+

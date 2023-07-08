@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged in </title>
+    <link rel="stylesheet" href="CSS/styleprofile.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="Profile.html">Profile</a></li>
+            <li><a href="form.html">Add Employee</a></li>
+            <li><a href="change.html">Change Password</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+    </nav>
+    <br />
+    <br /><br /><br /><br />
+    <div class="form" >
+        <h2>User Profile</h2><br><br>
+    <form id="empForm" method="post">
+        <div class="form-group">
+        <label for="Email">Email: </label>
+        <input type="text" name="Email"  id="Email"><br>
+    </div>
+        <label>Name: </label>
+        <input type="text" name="Name" id="Name" ><br>
+        <label>Phone: </label>
+        <input type="text" name="Phone" id="Phone" ><br>
+        
+        <center>
+            <input type="button" value="Save" id="Save" onclick="saveEmployee();">
+            <input type="button" value="Edit" id="Edit" onclick="ChangeEmployee();">   
+        </center>
+    </form>
+</div>
+    <div class="main">
+        <a href="mailto:kaushiksonal2001@gmail.com">kaushiksonal2001@gmail.com </a>
+    </div><br><Br><Br><Br><Br><Br><Br><Br><br><br><br><br><br>
+<div class="footer">
+    <div class="row">
+        <h3>Copyright 2023&COPY; Pooja Sharma</h3></div>
+    </div>
+
+<script>
+$("#empId").focus();
+function validateAndGetFormData() {
+var EmailVar = $("#Email").val();
+if (EmailVar === "") {
+alert("Email is Required Value");
+$("#Email").focus();
+return "";
+}
+var NameVar = $("#Name").val();
+if (NameVar === "") {
+alert("Name is Required Value");
+$("#Name").focus();
+return "";
+}
+var PhoneVar = $("#Phone").val();
+if (PhoneVar === "") {
+alert("Phone is Required Value");
+$("#Phone").focus();
+return "";
+}
+var jsonStrObj = {
+Email:EmailVar,
+Name:NameVar,
+Phone:PhoneVar,
+};
+return JSON.stringify(jsonStrObj);
+}
+// This method is used to create PUT Json request.
+function createPUTRequest(connToken, jsonObj, dbName, relName) {
+var putRequest = "{\n"
++ "\"token\" : \""
++ connToken
++ "\","
++ "\"dbName\": \""
++ dbName
++ "\",\n" + "\"cmd\" : \"PUT\",\n"
++ "\"rel\" : \""
++ relName + "\","
++ "\"jsonStr\": \n"
++ jsonObj
++ "\n"
++ "}";
+return putRequest;
+}
+function executeCommand(reqString, dbBaseUrl, apiEndPointUrl) {
+var url = dbBaseUrl + apiEndPointUrl;
+var jsonObj;
+$.post(url, reqString, function (result) {
+jsonObj = JSON.parse(result);
+}).fail(function (result) {
+var dataJsonObj = result.responseText;
+jsonObj = JSON.parse(dataJsonObj);
+});
+return jsonObj;
+}
+function ChangeEmployee()
+{$("#change").prop("disabled".true);
+    jsonChg = validateAndGetFormData()
+    var updateRequest = createUPDATERecordRequest(connToken, jsonChg, empDBName, empRelationName, localStorage.getItem("recno"));
+    jQuery.ajaxSetup({async: false});
+    var resJsonObj = executeCommandAtGivenBaseUrl(updateRequest, jpdbBaseURL, jpdbIML);
+    jQuery.ajaxSetup({async: true});
+    console.log(resJsonObj);
+    resetForm();
+    $("#empid").focus();
+}
+
+function saveEmployee() {
+var jsonStr = validateAndGetFormData();
+if (jsonStr === "") {
+return;
+}
+var putReqStr = createPUTRequest("90932861|-31949280222049110|90950753",
+jsonStr, "college-Db", "PROJECT-table");
+alert(putReqStr);
+jQuery.ajaxSetup({async: false});
+var resultObj = executeCommand(putReqStr,
+"http://api.login2explore.com:5577", "/api/iml");
+alert(JSON.stringify(resultObj));
+jQuery.ajaxSetup({async: true});
+resetForm();
+}
+</script>
+</body>
+</html>
